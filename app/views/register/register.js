@@ -5,7 +5,7 @@
   angular.module('authExerciseApp').config(['$stateProvider', function ($stateProvider)
   {
     $stateProvider.state('register', {
-      url: '/register', templateUrl: 'views/register/register.html', controller: 'RegisterController as registerCtrl'
+      parent: 'site', url: '/register', templateUrl: 'views/register/register.html', controller: 'RegisterController as registerCtrl'
     });
 
   }]);
