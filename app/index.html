@@ -23,53 +23,13 @@
   experience.</p>
 <![endif]-->
 
-<div ng-if="!login" class="container">
-  <!--<ul class="nav nav-tabs" role="tablist">-->
-    <!--<li ng-class="{active: !register}"><a ng-click="register = false;">Login</a></li>-->
-    <!--<li ng-class="{active: register}"><a ng-click="register = true;">Register</a></li>-->
-  <!--</ul>-->
-  <!--<div ng-if="!register" ui-view="login"></div>-->
-  <!--<div ng-if="register" ui-sref="register"></div>-->
-</div>
-<div ng-if="!login" class="container">
-  <div ui-view></div>
-</div>
-
-<!-- Add your site or application content here -->
-<div  class="header">
-  <div class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-
-        <a class="navbar-brand" href="#/">authExercise</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#/">Home</a></li>
-          <li class="active"><a ui-sref="about">About</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
+<ui-view></ui-view>
 <div growl></div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
-  !function (A, n, g, u, l, a, r)
-  {
-    A.GoogleAnalyticsObject = l, A[l] = A[l] || function ()
-    {
+  !function (A, n, g, u, l, a, r) {
+    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
       (A[l].q = A[l].q || []).push(arguments)
     }, A[l].l = +new Date, a = n.createElement(g), r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
   }(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
@@ -87,6 +47,7 @@
 <script src="bower_components/angular-mocks/angular-mocks.js"></script>
 <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -94,15 +55,18 @@
 <script src="app.js"></script>
 
 <script src="views/site/site.js"></script>
-<script src="views/login/login.js"></script>
-<script src="views/login/login-ctrl.js"></script>
-<script src="views/home/home.js"></script>
-<script src="views/home/home-ctrl.js"></script>
-<script src="views/register/register.js"></script>
-<script src="views/register/register-ctrl.js"></script>
-<script src="views/about/about.js"></script>
-<script src="views/about/about-ctrl.js"></script>
+<script src="views/site/auth/auth.js"></script>
+<script src="views/site/auth/auth-ctrl.js"></script>
+<script src="views/site/auth/login/login.js"></script>
+<script src="views/site/auth/login/login-ctrl.js"></script>
+<script src="views/site/auth/login/home/home-ctrl.js"></script>
+<script src="views/site/auth/menu/menu-ctrl.js"></script>
+<script src="views/site/auth/register/register.js"></script>
+<script src="views/site/auth/register/register-ctrl.js"></script>
+<script src="views/site/auth/about/about.js"></script>
+<script src="views/site/auth/about/about-ctrl.js"></script>
 <script src="services/auth/auth-service.js"></script>
+<script src="services/user/user-service.js"></script>
 <!-- endbuild -->
 
 </body>

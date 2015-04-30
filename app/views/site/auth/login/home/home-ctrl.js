@@ -7,7 +7,6 @@
  * # MainCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp').controller('AboutController', function ($scope)
-  {
-
-  });
+angular.module('authExerciseApp').controller('HomeController', function ($rootScope) {
+  console.log('Home controller!');
+});

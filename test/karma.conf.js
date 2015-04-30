@@ -26,6 +26,7 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-growl-v2/build/angular-growl.js',
       'bower_components/angular-resource/angular-resource.js',
+      'bower_components/angular-cookies/angular-cookies.js',
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
