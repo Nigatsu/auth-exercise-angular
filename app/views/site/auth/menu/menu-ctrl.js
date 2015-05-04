@@ -8,7 +8,10 @@
  * Controller of the authExerciseApp
  */
 angular.module('authExerciseApp').controller('MenuController',
-  ['Authenticated', function (Authenticated) {
+  ['AuthService', 'User', function (AuthService, User) {
     console.log('jestem w menuCtrl!');
-    this.user = {name: 'Admin'};
+    this.logout = function () {
+      AuthService.logout();
+    };
+    this.user = User;
   }]);

@@ -8,15 +8,15 @@
  * Controller of the authExerciseApp
  */
 angular.module('authExerciseApp').controller('LoginController',
-  ['$rootScope', 'AuthService', 'growl', 'Authenticated', function ($rootScope, AuthService, growl, Authenticated) {
-    console.log('jestem w loginCtrl!');
+  ['AuthService', 'growl', function (AuthService, growl) {
+    console.log('Login controller!');
     var ctrl = this;
     ctrl.login = function () {
       if (ctrl.validate()) {
         ctrl.register = true;
         AuthService.login(ctrl.name, ctrl.password).then(function () {
           growl.info('Hello, ' + ctrl.name + '!');
-          $rootScope.authenticated = true;
+          ctrl.authenticated = true;
         });
       }
     };

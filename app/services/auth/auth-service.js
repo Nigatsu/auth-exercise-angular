@@ -7,29 +7,37 @@
  * # authService
  * Service in the authExerciseApp.
  */
-angular.module('authExerciseApp').service('AuthService', ['$resource', '$cookies', function ($resource, $cookies) {
+angular.module('authExerciseApp').service('AuthService', ['$resource', '$cookies', '$state', function ($resource, $cookies, $state) {
   var authDao = $resource('/auth/:a/', null, {
     login: {method: 'POST', isArray: false, params: {a: 'login'}},
     logout: {method: 'POST', isArray: false, params: {a: 'logout'}}
-  }), loginPromise, isAuthenticated = true, auth = {};
+  }), loginPromise, token = $cookies.get('token'), auth = {}, logoutPromise;
 
   auth.isAuthenticated = function () {
-    return isAuthenticated;
+    return token ? true : false;
   };
   auth.login = function (login, password) {
     loginPromise = authDao.login({name: login, password: password}).$promise;
     loginPromise.then(function (data) {
-      isAuthenticated = true;
-      $cookies.put('token', 'Bearer ' + data.token);
+      token = 'Bearer ' + data.token;
+      $cookies.put('token', token);
+      console.info('AuthService: Logging in!');
+      $state.reload();
     }, function () {
-      isAuthenticated = false;
+      token = false;
     });
     return loginPromise;
   };
   auth.logout = function () {
-    isAuthenticated = false;
+    token = false;
     $cookies.remove('token');
-    return authDao.logout().$promise;
+    logoutPromise = authDao.logout().$promise;
+    console.info('AuthService: Logging out!');
+    $state.reload();
+    return logoutPromise;
+  };
+  auth.getToken = function () {
+    return token;
   };
 
   return auth;

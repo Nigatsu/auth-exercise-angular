@@ -7,13 +7,12 @@
  * # AboutCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp').controller('RegisterController', ['AuthService', 'growl', '$scope', function (AuthService, growl, $scope) {
+angular.module('authExerciseApp').controller('RegisterController', ['UserService', 'growl', '$scope', function (UserService, growl, $scope) {
   var ctrl = this;
   ctrl.register = function () {
     if (ctrl.validate()) {
-      AuthService.register({name: ctrl.login, password: ctrl.password}, function () {
+      UserService.register({name: ctrl.login, password: ctrl.password}, function () {
         growl.info("User " + ctrl.login + 'successfully registered!');
-        $scope.$parent.register = false;
       });
     }
   };

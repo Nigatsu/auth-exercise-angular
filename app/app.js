@@ -10,15 +10,17 @@
  */
 var app = angular.module('authExerciseApp', ['ui.router', 'ngResource', 'ngMockE2E', 'angular-growl', 'ngCookies']);
 
-app.config(['$urlRouterProvider', 'growlProvider', function ($urlRouterProvider, growlProvider) {
+app.config(['$urlRouterProvider', '$httpProvider', 'growlProvider', function ($urlRouterProvider, $httpProvider, growlProvider) {
   $urlRouterProvider.otherwise('/');
   growlProvider.globalTimeToLive({success: 2000, error: 3000, warning: 3000, info: 4000});
   growlProvider.globalDisableCountDown(true);
+
+  $httpProvider.interceptors.push('authInterceptor');
 }]);
 
 app.run(['$httpBackend', function ($httpBackend) {
   var id = 1, users = [{id: 0, name: 'admin', password: 'admin'}],
-      tokens = [];
+      tokens = [{token: 'g5Xfe2hk', user: users[0]}];
 
   function generateToken() {
     return Math.random().toString(36).substr(2, 10);
@@ -61,14 +63,6 @@ app.run(['$httpBackend', function ($httpBackend) {
     return null;
   }
 
-  $httpBackend.whenPOST('/auth/register').respond(function (method, url, data, headers) {
-    console.log('Registering with these data:', method, url, data, headers);
-    var newUser = angular.fromJson(data);
-    newUser.id = id++;
-    users.push(newUser);
-    return [200, {}, {}];
-  });
-
   $httpBackend.whenPOST('/auth/login').respond(function (method, url, data, headers) {
     console.log('Authenticating with these data:', method, url, data, headers);
     var user = angular.fromJson(data), newToken, dbUser;
@@ -76,8 +70,12 @@ app.run(['$httpBackend', function ($httpBackend) {
     if (null != user.name) {
       dbUser = checkUser(user);
       if (null != dbUser) {
-        newToken = generateToken();
-        tokens.push({token: newToken, user: dbUser});
+        if ('admin' == dbUser.name) {
+          newToken = tokens[0].token;
+        } else {
+          newToken = generateToken();
+          tokens.push({token: newToken, user: dbUser});
+        }
         return [200, {token: newToken}, {}];
       }
     }
@@ -95,16 +93,27 @@ app.run(['$httpBackend', function ($httpBackend) {
     return [401, {}, {}];
   });
 
-  $httpBackend.whenGET(/^\/user\/\d{1,10}$/).respond(function (headers) {
-    console.log('Get user:', headers);
-    return [200, {}, {}];
+  $httpBackend.whenPOST('/user/register').respond(function (method, url, data, headers) {
+    console.log('Registering with these data:', method, url, data, headers);
+    var newUser = angular.fromJson(data), newToken;
+    newUser.id = id++;
+    users.push(newUser);
+    newToken = generateToken();
+    tokens.push({token: newToken, user: newUser});
+    return [200, {token: newToken}, {}];
+  });
+
+  $httpBackend.whenGET('/user/current').respond(function (type, path, b, headers) {
+    console.log('Get current user:', headers);
+    var user = checkUserByToken(headers.Authorization.substr('Bearer '.length));
+    return [200, {name: user.name}, {}];
   });
 
   $httpBackend.whenPATCH('/user/password').respond(function (method, url, data, headers) {
     console.log('Change user password:', method, url, data, headers);
     var user;
-    if (null != headers.Authrization) {
-      user = checkUserByToken(headers.Authrization);
+    if (null != headers.Authorization) {
+      user = checkUserByToken(headers.Authorization.substr('Bearer '.length));
       if (null != user) {
         var password = angular.fromJson(data);
         if (password.oldPassword != user.password) {

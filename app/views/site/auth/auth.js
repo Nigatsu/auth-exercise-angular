@@ -8,12 +8,17 @@
           template: '<ui-view></ui-view>', controller: 'AuthenticationController as authController'
         },
         'menu@site': {
-          templateUrl: '/views/site/auth/menu/menu.html', controller: 'MenuController as menuctrl'
+          templateUrl: '/views/site/auth/menu/menu.html', controller: 'MenuController as menuCtrl'
         }
       }, resolve: {
-        Authenticated: function (AuthService) {
-          console.log('Sprawdzanie auth!!');
-          return AuthService.isAuthenticated();
+        User: function (AuthService, UserService, $rootScope) {
+          console.info('AuthState: resolving user rights!');
+          if (AuthService.isAuthenticated()) {
+            $rootScope.authenticated = true;
+            return UserService.getCurrent();
+          } else {
+            $rootScope.authenticated = false;
+          }
         }
       }
     });

@@ -18,14 +18,18 @@
   </ul>
 
   <div class="dropdown pull-right">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-      {{ menuCtrl.user.name }}
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
-      <li role="presentation" class="divider"></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
-    </ul>
+    <div class="user-menu container-fluid">
+      <i class="glyphicon glyphicon-user"></i>
+      <span class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        <span class="user-menu-username">{{ menuCtrl.user.name }}</span>
+        <span class="caret"></span>
+      </span>
+
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="menuCtrl.logout()">Logout</a></li>
+      </ul>
+    </div>
   </div>
 </div>

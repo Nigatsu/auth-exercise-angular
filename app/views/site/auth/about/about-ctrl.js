@@ -7,6 +7,6 @@
  * # MainCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp').controller('AboutController', function ($scope) {
+angular.module('authExerciseApp').controller('AboutController', function () {
   console.log('About controller!');
 });

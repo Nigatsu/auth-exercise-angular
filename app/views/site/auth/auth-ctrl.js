@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp').controller('AuthenticationController', ['$rootScope', 'Authenticated', function ($rootScope, Authenticated) {
+angular.module('authExerciseApp').controller('AuthenticationController', ['User', function (User) {
   console.log('Auth controller!');
-  this.authenticated = Authenticated;
+  this.user = User;
 }]);
