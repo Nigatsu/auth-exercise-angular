@@ -7,6 +7,9 @@
         '@site': {
           template: '<ui-view></ui-view>', controller: 'AuthenticationController as authController'
         },
+        'no-auth@site': {
+          templateUrl: '/views/site/auth/login/login.html', controller: 'LoginController as loginCtrl'
+        },
         'menu@site': {
           templateUrl: '/views/site/auth/menu/menu.html', controller: 'MenuController as menuCtrl'
         }

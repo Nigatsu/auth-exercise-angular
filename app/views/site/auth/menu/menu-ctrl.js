@@ -9,7 +9,7 @@
  */
 angular.module('authExerciseApp').controller('MenuController',
   ['AuthService', 'User', function (AuthService, User) {
-    console.log('jestem w menuCtrl!');
+    console.log('Menu controller!');
     this.logout = function () {
       AuthService.logout();
     };
