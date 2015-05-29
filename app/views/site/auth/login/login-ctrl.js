@@ -13,10 +13,8 @@ angular.module('authExerciseApp').controller('LoginController',
     var ctrl = this;
     ctrl.login = function () {
       if (ctrl.validate()) {
-        ctrl.register = true;
         AuthService.login(ctrl.name, ctrl.password).then(function () {
           growl.info('Hello, ' + ctrl.name + '!');
-          ctrl.authenticated = true;
         });
       }
     };

@@ -28,9 +28,15 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-cookies/angular-cookies.js',
       // endbower
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'app/app.js',
+      'app/views/site/auth/about/*.js',
+      'app/views/site/auth/login/*.js',
+      'app/views/site/auth/register/*.js',
+      'app/views/site/auth/menu/*.js',
+      'app/views/site/auth/*.js',
+      'app/views/site/*.js',
+      'app/services/**/**/*.js',
+      'test/spec/controllers/register-ctrl.spec.js'
     ],
 
     // list of files / patterns to exclude

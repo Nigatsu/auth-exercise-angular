@@ -7,22 +7,29 @@
  * # AboutCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp').controller('RegisterController', ['UserService', 'growl', '$scope', function (UserService, growl, $scope) {
-  var ctrl = this;
-  ctrl.register = function () {
-    if (ctrl.validate()) {
-      UserService.register({name: ctrl.login, password: ctrl.password}, function () {
-        growl.info("User " + ctrl.login + 'successfully registered!');
-      });
-    }
-  };
+angular.module('authExerciseApp').controller('RegisterController',
+  ['UserService', 'growl', 'AuthService', '$state', function (UserService, growl, AuthService, $state) {
+    console.log('Register controller!');
 
-  ctrl.validate = function () {
-    if (null != ctrl.login && null != ctrl.password && null != ctrl.passwordRetype) {
-      if (ctrl.password === ctrl.passwordRetype) {
-        return true;
+    var ctrl = this;
+    ctrl.register = function () {
+      if (ctrl.validate()) {
+        UserService.register(ctrl.login, ctrl.password).then(function () {
+          growl.info("User " + ctrl.login + ' successfully registered!');
+          AuthService.login(ctrl.login, ctrl.password).then(function () {
+            $state.go('site.auth.login', {}, {reload: true});
+            growl.info('Hello, ' + ctrl.login + '!');
+          });
+        });
       }
-    }
-    return false;
-  };
-}]);
+    };
+
+    ctrl.validate = function () {
+      if (null != ctrl.login && null != ctrl.password && null != ctrl.passwordRetype) {
+        if (ctrl.password === ctrl.passwordRetype) {
+          return true;
+        }
+      }
+      return false;
+    };
+  }]);
