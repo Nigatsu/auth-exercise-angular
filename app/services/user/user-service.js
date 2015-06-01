@@ -10,8 +10,7 @@
 angular.module('authExerciseApp').service('UserService', ['$resource', function ($resource) {
   var userDao = $resource('/user/:a/', null, {
     getCurrent: {method: 'GET', isArray: false,  params: {a: 'current'}},
-    register: {method: 'POST', isArray: false, params: {a: 'register'}},
-    changePassword: {method: 'PATCH', params: {a: 'password'}}
+    register: {method: 'POST', isArray: false, params: {a: 'register'}}
   }), user = {};
 
   user.getCurrent = function () {
@@ -19,9 +18,6 @@ angular.module('authExerciseApp').service('UserService', ['$resource', function 
   };
   user.register = function (login, password) {
     return userDao.register({name: login, password: password}).$promise;
-  };
-  user.changePassword = function (oldPass, newPass) {
-    return userDao.changePassword({oldPassword: oldPass, newPassword: newPass}).$promise;
   };
 
   return user;

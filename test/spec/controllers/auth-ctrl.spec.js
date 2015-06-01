@@ -18,6 +18,10 @@ describe('Controller: AuthCtrl', function () {
     });
   }));
 
+  it('should AuthCtrl be available', function () {
+    expect(!!AuthCtrl).toBe(true);
+  });
+
   it('should log presence', function () {
     expect(console.log).toHaveBeenCalledWith('Auth controller!');
   });

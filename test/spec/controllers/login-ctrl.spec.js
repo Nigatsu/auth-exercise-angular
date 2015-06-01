@@ -41,6 +41,10 @@ describe('Controller: LoginCtrl', function () {
     spyOn(AuthService, 'login').and.callThrough();
   }));
 
+  it('should LoginCtrl be available', function () {
+    expect(!!LoginCtrl).toBe(true);
+  });
+
   it('should log presence', function () {
     expect(console.log).toHaveBeenCalledWith('Login controller!');
   });

@@ -36,7 +36,8 @@ module.exports = function(config) {
       'app/views/site/auth/*.js',
       'app/views/site/*.js',
       'app/services/**/**/*.js',
-      'test/spec/controllers/register-ctrl.spec.js'
+      'test/spec/**/*.js'
+      //'test/spec/controllers/register-ctrl.spec.js'
     ],
 
     // list of files / patterns to exclude
