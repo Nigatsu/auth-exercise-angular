@@ -32,7 +32,7 @@ describe('Route: Register', function () {
   }));
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($injector, $templateCache) {
+  beforeEach(inject(function ($injector, $templateCache, $controller) {
     $state = $injector.get('$state');
     AuthService = $injector.get('AuthService');
     UserService = $injector.get('UserService');
