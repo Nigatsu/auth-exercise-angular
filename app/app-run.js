@@ -17,7 +17,7 @@ app.run(['$httpBackend', function ($httpBackend) {
 
   function removeToken(token) {
     var dbToken = findToken(token);
-    if (null != dbToken) {
+    if (null !== dbToken) {
       tokens.splice(dbToken.position, 1);
       return true;
     }
@@ -37,7 +37,7 @@ app.run(['$httpBackend', function ($httpBackend) {
 
   function checkUserByToken(token) {
     var dbToken = findToken(token);
-    if (null != dbToken) {
+    if (null !== dbToken) {
       return dbToken.instance.user;
     }
     return null;
@@ -47,10 +47,10 @@ app.run(['$httpBackend', function ($httpBackend) {
     console.log('Authenticating with these data:', method, url, data, headers);
     var user = angular.fromJson(data), newToken, dbUser;
 
-    if (null != user.name) {
+    if (null !== user.name) {
       dbUser = checkUser(user);
-      if (null != dbUser) {
-        if ('admin' == dbUser.name) {
+      if (null !== dbUser) {
+        if ('admin' === dbUser.name) {
           newToken = tokens[0].token;
         } else {
           newToken = generateToken();
@@ -64,8 +64,8 @@ app.run(['$httpBackend', function ($httpBackend) {
 
   $httpBackend.whenPOST('/auth/logout').respond(function (method, url, data, headers) {
     console.log('Logging out:', method, url, data, headers);
-    if (null != headers.Authorization) {
-      if (null != removeToken(headers.Authorization.substr('Bearer '.length))) {
+    if (null !== headers.Authorization) {
+      if (null !== removeToken(headers.Authorization.substr('Bearer '.length))) {
         return [200, {}, {}];
       }
       return [500, {}, {}];
@@ -92,11 +92,11 @@ app.run(['$httpBackend', function ($httpBackend) {
   $httpBackend.whenPATCH('/user/password').respond(function (method, url, data, headers) {
     console.log('Change user password:', method, url, data, headers);
     var user;
-    if (null != headers.Authorization) {
+    if (null !== headers.Authorization) {
       user = checkUserByToken(headers.Authorization.substr('Bearer '.length));
-      if (null != user) {
+      if (null !== user) {
         var password = angular.fromJson(data);
-        if (password.oldPassword != user.password) {
+        if (password.oldPassword !== user.password) {
           user.password = password.newPassword;
           return [200, {}, {}];
         }

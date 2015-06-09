@@ -21,8 +21,8 @@ mocked endpoints that will be sufficient for your needs. We need following servi
 **Methods:**
 
     * isAuthenticated() - return boolean value depending if token cookie is set
-    * authenticate(name, password) - authenticate the user given the name(user name) and password. Set token cookie.
-    * expire() - de-authenticate the user and remove the token cookie
+    * login(name, password) - authenticate the user given the name(user name) and password. Set token cookie.
+    * logout() - de-authenticate the user and remove the token cookie
 
 and
 

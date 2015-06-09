@@ -9,8 +9,8 @@ describe('Service: authService', function () {
     $provide.service('$state', function () {
       this.reload = function () {
         return true;
-      }
-    })
+      };
+    });
   }));
   // instantiate service
   beforeEach(inject(function ($injector, $templateCache) {
@@ -36,7 +36,6 @@ describe('Service: authService', function () {
     $httpBackend.expectPOST('/auth/login').respond(200, {login: true});
     AuthService.login('admin', 'admin').then(function (data) {
       expect(data.login).toBe(true);
-      expect($state.reload).toHaveBeenCalled();
     });
     $httpBackend.flush();
   });
@@ -45,7 +44,6 @@ describe('Service: authService', function () {
     $httpBackend.expectPOST('/auth/login').respond(200, {login: true});
     AuthService.login('admin', 'admin').then(function (data) {
       expect(data.login).toBe(true);
-      expect($state.reload).toHaveBeenCalled();
       expect(AuthService.isAuthenticated()).toBe(true);
     });
     $httpBackend.flush();
@@ -55,7 +53,6 @@ describe('Service: authService', function () {
     $httpBackend.expectPOST('/auth/login').respond(401, {login: false});
     AuthService.login('admin', 'admin').then(function (data) {
       expect(data.login).toBe(false);
-      expect($state.reload).toHaveBeenCalled();
       expect(AuthService.isAuthenticated()).toBe(false);
     });
     $httpBackend.flush();
@@ -65,7 +62,6 @@ describe('Service: authService', function () {
     $httpBackend.expectPOST('/auth/login').respond(401, {login: false});
     AuthService.login('admin', 'superadmin').then(function (data) {
       expect(data.login).toBe(false);
-      expect($state.reload).not.toHaveBeenCalled();
     });
     $httpBackend.flush();
   });
