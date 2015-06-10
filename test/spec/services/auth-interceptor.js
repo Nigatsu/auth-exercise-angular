@@ -1,5 +1,7 @@
 describe('Factory: authInterceptor', function () {
 
+  'use strict';
+
   var authInterceptor, AuthService, tokenAvailable = true;
 
   // load the controller's module
@@ -9,7 +11,7 @@ describe('Factory: authInterceptor', function () {
         if (tokenAvailable) {
           return 'Bearer g5Xfe2hk';
         }
-      }
+      };
     });
   }));
 
