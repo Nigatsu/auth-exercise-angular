@@ -14,7 +14,7 @@ describe('Controller: Menu', function () {
       };
       this.logout = function () {
         auth = false;
-      }
+      };
     });
   }));
 

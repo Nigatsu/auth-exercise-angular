@@ -26,7 +26,7 @@ describe('Controller: LoginCtrl', function () {
       };
       this.getToken = function () {
         return 'Bearer g5Xfe2hk';
-      }
+      };
     });
   }));
 

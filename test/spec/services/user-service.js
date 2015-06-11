@@ -13,10 +13,10 @@ describe('Service: userService', function () {
     UserService = $injector.get('UserService');
 
     $templateCache.put('views/site/site.html', '');
-    $templateCache.put('/views/site/auth/login/login.html', '');
-    $templateCache.put('/views/site/auth/menu/menu.html', '');
-    $templateCache.put('/views/site/auth/about/about.html', '');
-    $templateCache.put('/views/site/auth/login/home/home.html', '');
+    $templateCache.put('views/site/auth/login/login.html', '');
+    $templateCache.put('views/site/auth/menu/menu.html', '');
+    $templateCache.put('views/site/auth/about/about.html', '');
+    $templateCache.put('views/site/auth/login/home/home.html', '');
     $templateCache.put('views/site/auth/register/register.html', '');
   }));
 

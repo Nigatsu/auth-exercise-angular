@@ -8,10 +8,10 @@
           template: '<ui-view></ui-view>', controller: 'AuthenticationController as authController'
         },
         'no-auth@site': {
-          templateUrl: '/views/site/auth/login/login.html', controller: 'LoginController as loginCtrl'
+          templateUrl: 'views/site/auth/login/login.html', controller: 'LoginController as loginCtrl'
         },
         'menu@site': {
-          templateUrl: '/views/site/auth/menu/menu.html', controller: 'MenuController as menuCtrl'
+          templateUrl: 'views/site/auth/menu/menu.html', controller: 'MenuController as menuCtrl'
         }
       }, resolve: {
         User: function (AuthService, UserService, $rootScope) {

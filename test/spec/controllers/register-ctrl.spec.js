@@ -13,14 +13,14 @@ describe('Controller: Register', function () {
         auth = true;
         return {then: loginThen.and.callFake(function (callback) {
           callback();
-        })}
+        })};
       };
       this.isAuthenticated = function() {
         return auth;
       };
       this.getToken = function () {
         return 'Bearer g5Xfe2hk';
-      }
+      };
     });
 
     $provide.service('UserService', function () {
@@ -29,15 +29,15 @@ describe('Controller: Register', function () {
         return newUser;
       };
       this.register = function (name, password) {
-        if ('test' != name || 'test' != password) {
+        if ('test' !== name || 'test' !== password) {
           newUser = {name: name, password: password};
           return {then: registerThen.and.callFake(function (callback) {
             callback();
-          })}
+          })};
         } else {
           return {then: function () {}};
         }
-      }
+      };
     });
   }));
 

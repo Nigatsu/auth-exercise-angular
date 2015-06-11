@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Factory: authInterceptor', function () {
 
   var authInterceptor, AuthService, tokenAvailable = true;
@@ -9,7 +11,7 @@ describe('Factory: authInterceptor', function () {
         if (tokenAvailable) {
           return 'Bearer g5Xfe2hk';
         }
-      }
+      };
     });
   }));
 
@@ -37,7 +39,7 @@ describe('Factory: authInterceptor', function () {
   it('should not set token from AuthService if not available', function () {
     tokenAvailable = false;
     var header = authInterceptor.request({});
-    expect(header.headers.Authorization).toBeFalsy();
+    expect(header.headers.Authorization).toBeUndefined();
     expect(AuthService.getToken).toHaveBeenCalled();
   });
 

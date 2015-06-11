@@ -17,7 +17,7 @@ describe('Route: Home', function () {
       };
       this.getToken = function () {
         return 'Bearer g5Xfe2hk';
-      }
+      };
     });
 
     $provide.service('UserService', function () {
@@ -25,7 +25,7 @@ describe('Route: Home', function () {
       this.getCurrent = function () {
         wasFired = !wasFired;
         return wasFired;
-      }
+      };
     });
   }));
 
@@ -37,10 +37,10 @@ describe('Route: Home', function () {
     $rootScope = $injector.get('$rootScope');
 
     $templateCache.put('views/site/site.html', '');
-    $templateCache.put('/views/site/auth/login/login.html', '');
-    $templateCache.put('/views/site/auth/menu/menu.html', '');
-    $templateCache.put('/views/site/auth/about/about.html', '');
-    $templateCache.put('/views/site/auth/login/home/home.html', '');
+    $templateCache.put('views/site/auth/login/login.html', '');
+    $templateCache.put('views/site/auth/menu/menu.html', '');
+    $templateCache.put('views/site/auth/about/about.html', '');
+    $templateCache.put('views/site/auth/login/home/home.html', '');
   }));
 
   it('should not display restricted view to the scope if not authenticated', function () {

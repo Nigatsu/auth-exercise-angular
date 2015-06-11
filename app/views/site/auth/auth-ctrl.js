@@ -7,4 +7,8 @@
  * # AboutCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp')
+angular.module('authExerciseApp').controller('AuthenticationController', ['User', function (User)
+{
+    console.log('Auth controller!');
+    this.user = User;
+}]);

@@ -7,4 +7,7 @@
  * # AboutController
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp')
+angular.module('authExerciseApp').controller('AboutController', ['', function ()
+{
+    console.log('AboutController');
+}]);

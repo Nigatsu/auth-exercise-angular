@@ -18,7 +18,7 @@ describe('Route: Register', function () {
       };
       this.getToken = function () {
         return 'Bearer g5Xfe2hk';
-      }
+      };
     });
 
     $provide.service('UserService', function () {
@@ -28,7 +28,7 @@ describe('Route: Register', function () {
       };
       this.register = function (name, password) {
         newUser = {name: name, password: password};
-      }
+      };
     });
   }));
 
@@ -43,10 +43,10 @@ describe('Route: Register', function () {
     spyOn(UserService, 'register').and.callThrough();
 
     $templateCache.put('views/site/site.html', '');
-    $templateCache.put('/views/site/auth/login/login.html', '');
-    $templateCache.put('/views/site/auth/menu/menu.html', '');
-    $templateCache.put('/views/site/auth/about/about.html', '');
-    $templateCache.put('/views/site/auth/login/home/home.html', '');
+    $templateCache.put('views/site/auth/login/login.html', '');
+    $templateCache.put('views/site/auth/menu/menu.html', '');
+    $templateCache.put('views/site/auth/about/about.html', '');
+    $templateCache.put('views/site/auth/login/home/home.html', '');
     $templateCache.put('views/site/auth/register/register.html', '');
   }));
 

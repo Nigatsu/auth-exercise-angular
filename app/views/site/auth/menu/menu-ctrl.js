@@ -7,4 +7,12 @@
  * # MenuCtrl
  * Controller of the authExerciseApp
  */
-angular.module('authExerciseApp')
+angular.module('authExerciseApp').controller('MenuController', ['User', 'AuthService', function (User, AuthService)
+{
+    this.user = User;
+
+    this.logout = function ()
+    {
+        AuthService.logout();
+    };
+}]);

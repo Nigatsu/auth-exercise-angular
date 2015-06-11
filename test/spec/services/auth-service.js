@@ -9,8 +9,8 @@ describe('Service: authService', function () {
     $provide.service('$state', function () {
       this.reload = function () {
         return true;
-      }
-    })
+      };
+    });
   }));
   // instantiate service
   beforeEach(inject(function ($injector, $templateCache) {
@@ -21,10 +21,10 @@ describe('Service: authService', function () {
     spyOn($state, 'reload');
 
     $templateCache.put('views/site/site.html', '');
-    $templateCache.put('/views/site/auth/login/login.html', '');
-    $templateCache.put('/views/site/auth/menu/menu.html', '');
-    $templateCache.put('/views/site/auth/about/about.html', '');
-    $templateCache.put('/views/site/auth/login/home/home.html', '');
+    $templateCache.put('views/site/auth/login/login.html', '');
+    $templateCache.put('views/site/auth/menu/menu.html', '');
+    $templateCache.put('views/site/auth/about/about.html', '');
+    $templateCache.put('views/site/auth/login/home/home.html', '');
     $templateCache.put('views/site/auth/register/register.html', '');
   }));
 

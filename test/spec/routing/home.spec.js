@@ -37,10 +37,10 @@ describe('Route: Home', function () {
     $rootScope = $injector.get('$rootScope');
 
     $templateCache.put('views/site/site.html', '');
-    $templateCache.put('/views/site/auth/login/login.html', '');
-    $templateCache.put('/views/site/auth/menu/menu.html', '');
-    $templateCache.put('/views/site/auth/about/about.html', '');
-    $templateCache.put('/views/site/auth/login/home/home.html', '');
+    $templateCache.put('views/site/auth/login/login.html', '');
+    $templateCache.put('views/site/auth/menu/menu.html', '');
+    $templateCache.put('views/site/auth/about/about.html', '');
+    $templateCache.put('views/site/auth/login/home/home.html', '');
   }));
 
   it('should not display restricted view to the scope if not authenticated', function () {
